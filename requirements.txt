@@ -1,0 +1,7 @@
+sqlalchemy
+sqlalchemy_utils
+boto3
+psycopg2==2.8.6
+alembic==1.5.2
+flask
+# pytest

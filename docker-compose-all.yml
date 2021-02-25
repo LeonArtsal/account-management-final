@@ -1,0 +1,22 @@
+services:
+  account-management:
+    image: account-management:latest
+    environment:
+      - DP_ACCTMGMT_S3_BUCKET=${DP_ACCTMGMT_S3_BUCKET}
+      - DP_ACCTMGMT_EXPORTED_FILENAME=${DP_ACCTMGMT_EXPORTED_FILENAME}
+      - DP_ACCTMGMT_AWS_PROFILE=${DP_ACCTMGMT_AWS_PROFILE}
+      - DP_ACCTMGMT_POSTGRES_URL=${DP_ACCTMGMT_POSTGRES_URL}
+      - DP_ACCTMGMT_POSTGRES_URL_TEST=${DP_ACCTMGMT_POSTGRES_URL_TEST}
+    depends_on:
+      - mypostgres
+
+  mypostgres:
+    image: postgres:13.1
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=accounts
+    logging:
+      options:
+        max-size: 10m
+        max-file: "3"
